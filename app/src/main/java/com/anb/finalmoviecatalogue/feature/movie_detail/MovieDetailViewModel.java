@@ -58,32 +58,33 @@ public class MovieDetailViewModel extends ViewModel {
 
     void changeFavState(){
         MovieDetail movieDetail = movieResponse.getValue();
-        if (isFavorite.getValue() != null){
-            if (movieDetail != null){
-                try (Realm realm = Realm.getDefaultInstance()) {
-                    if (!isFavorite.getValue()) {
-                        realm.executeTransaction(realm1 -> {
-                            Favorite favorite = realm1.createObject(Favorite.class, movieDetail.getId());
-                            favorite.setPoster_path(movieDetail.getPoster_path());
-                            favorite.setName(movieDetail.getTitle());
-                            favorite.setType("movie");
-                            realm1.insertOrUpdate(favorite);
-                        });
-                    } else {
-                        realm.executeTransaction(realm1 -> {
-                            Favorite favorite = realm1.where(Favorite.class)
-                                    .equalTo("id", movieDetail.getId())
-                                    .equalTo("type", "movie")
-                                    .findFirst();
-                            if (favorite != null) {
-                                favorite.deleteFromRealm();
-                            }
-                        });
-                    }
+        if (movieDetail != null){
+            Realm realm = Realm.getDefaultInstance();
+            try {
+                if (!isFavorite.getValue()){
+                    realm.executeTransaction(realm1 -> {
+                        Favorite favorite = realm1.createObject(Favorite.class, movieDetail.getId());
+                        favorite.setPoster_path(movieDetail.getPoster_path());
+                        favorite.setName(movieDetail.getTitle());
+                        favorite.setType("movie");
+                        realm1.insertOrUpdate(favorite);
+                    });
+                } else {
+                    realm.executeTransaction(realm1 -> {
+                        Favorite favorite = realm1.where(Favorite.class)
+                                .equalTo("id", movieDetail.getId())
+                                .equalTo("type", "movie")
+                                .findFirst();
+                        if (favorite != null){
+                            favorite.deleteFromRealm();
+                        }
+                    });
                 }
+            } finally {
+                realm.close();
             }
-            isFavorite.setValue(!isFavorite.getValue());
         }
+        isFavorite.setValue(!isFavorite.getValue());
     }
 
     private void onErrorMovie(Throwable e) {
@@ -92,13 +93,16 @@ public class MovieDetailViewModel extends ViewModel {
     }
     private void setDataMovie(MovieDetail movieDetail) {
         movieResponse.setValue(movieDetail);
-        try (Realm realm = Realm.getDefaultInstance()) {
+        Realm realm = Realm.getDefaultInstance();
+        try {
             RealmResults<Favorite> results = realm.where(Favorite.class)
                     .equalTo("id", movieDetail.getId())
                     .equalTo("type", "movie")
                     .findAll();
-            Boolean valid = results.size() > 0;
+            Boolean valid = results.size()>0;
             isFavorite.setValue(valid);
+        } finally {
+            realm.close();
         }
     }
     private void onErrorVideos(Throwable e) {

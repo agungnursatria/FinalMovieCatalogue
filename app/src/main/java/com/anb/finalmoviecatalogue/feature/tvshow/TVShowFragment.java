@@ -17,10 +17,12 @@ import android.support.v7.widget.SearchView;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import com.anb.finalmoviecatalogue.R;
 import com.anb.finalmoviecatalogue.data.model.TVShow;
@@ -31,6 +33,7 @@ import com.anb.finalmoviecatalogue.feature.tvshow.adapter.TVShowAdapter;
 import com.anb.finalmoviecatalogue.feature.tvshow_detail.TVShowDetailActivity;
 import com.anb.finalmoviecatalogue.utils.Constant;
 
+import java.util.ArrayList;
 import java.util.Objects;
 
 import butterknife.BindView;
@@ -117,35 +120,6 @@ public class TVShowFragment extends Fragment implements TVShowAdapter.OnItemClic
     }
 
     @Override
-    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        super.onCreateOptionsMenu(menu, inflater);
-
-        SearchManager searchManager = (SearchManager) context.getSystemService(Context.SEARCH_SERVICE);
-        if (searchManager != null) {
-            SearchView searchView = (SearchView) (menu.findItem(R.id.search)).getActionView();
-            searchView.setSearchableInfo(searchManager.getSearchableInfo(Objects.requireNonNull(getActivity()).getComponentName()));
-            searchView.setQueryHint(getResources().getString(R.string.tvshow_hint));
-            searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-                @Override
-                public boolean onQueryTextSubmit(String query) {
-                    InputMethodManager inputManager = (InputMethodManager)
-                            Objects.requireNonNull(getActivity()).getSystemService(Context.INPUT_METHOD_SERVICE);
-                    if (inputManager != null) {
-                        inputManager.hideSoftInputFromWindow(Objects.requireNonNull(getActivity().getCurrentFocus()).getWindowToken(),
-                                InputMethodManager.HIDE_NOT_ALWAYS);
-                    }
-                    return true;
-                }
-                @Override
-                public boolean onQueryTextChange(String newText) {
-                    adapter.filter(newText);
-                    return false;
-                }
-            });
-        }
-    }
-
-    @Override
     public void onDestroyView() {
         super.onDestroyView();
         viewModel.getResponse().removeObserver(observer);
@@ -170,7 +144,7 @@ public class TVShowFragment extends Fragment implements TVShowAdapter.OnItemClic
     public void setLayoutManager(Context context) {
         GridLayoutManager gridLayoutManager = new GridLayoutManager(
                 context,
-                (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT)? 2:4
+                (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) ? 2 : 4
         );
         rv.setLayoutManager(gridLayoutManager);
     }

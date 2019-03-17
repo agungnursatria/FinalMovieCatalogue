@@ -43,32 +43,33 @@ public class TVShowDetailViewModel extends ViewModel {
 
     void changeFavState(){
         TVShowDetail tvShowDetail = tvshowResponse.getValue();
-        if (isFavorite.getValue() != null){
-            if (tvShowDetail != null){
-                try (Realm realm = Realm.getDefaultInstance()) {
-                    if (!isFavorite.getValue()) {
-                        realm.executeTransaction(realm1 -> {
-                            Favorite favorite = realm1.createObject(Favorite.class, tvShowDetail.getId());
-                            favorite.setPoster_path(tvShowDetail.getPoster_path());
-                            favorite.setName(tvShowDetail.getName());
-                            favorite.setType("tvshow");
-                            realm1.insertOrUpdate(favorite);
-                        });
-                    } else {
-                        realm.executeTransaction(realm1 -> {
-                            Favorite favorite = realm1.where(Favorite.class)
-                                    .equalTo("id", tvShowDetail.getId())
-                                    .equalTo("type", "tvshow")
-                                    .findFirst();
-                            if (favorite != null) {
-                                favorite.deleteFromRealm();
-                            }
-                        });
-                    }
+        if (tvShowDetail != null){
+            Realm realm = Realm.getDefaultInstance();
+            try {
+                if (!isFavorite.getValue()){
+                    realm.executeTransaction(realm1 -> {
+                        Favorite favorite = realm1.createObject(Favorite.class, tvShowDetail.getId());
+                        favorite.setPoster_path(tvShowDetail.getPoster_path());
+                        favorite.setName(tvShowDetail.getName());
+                        favorite.setType("tvshow");
+                        realm1.insertOrUpdate(favorite);
+                    });
+                } else {
+                    realm.executeTransaction(realm1 -> {
+                        Favorite favorite = realm1.where(Favorite.class)
+                                .equalTo("id", tvShowDetail.getId())
+                                .equalTo("type", "tvshow")
+                                .findFirst();
+                        if (favorite != null){
+                            favorite.deleteFromRealm();
+                        }
+                    });
                 }
+            } finally {
+                realm.close();
             }
-            isFavorite.setValue(!isFavorite.getValue());
         }
+        isFavorite.setValue(!isFavorite.getValue());
     }
 
     private void onErrorMovie(Throwable e) {
@@ -77,17 +78,20 @@ public class TVShowDetailViewModel extends ViewModel {
     }
     private void setDataMovie(TVShowDetail tvShowDetail) {
         tvshowResponse.setValue(tvShowDetail);
-        try (Realm realm = Realm.getDefaultInstance()) {
+        Realm realm = Realm.getDefaultInstance();
+        try {
             RealmResults<Favorite> results = realm.where(Favorite.class)
                     .equalTo("id", tvShowDetail.getId())
                     .equalTo("type", "tvshow")
                     .findAll();
-            Boolean valid = results.size() > 0;
+            Boolean valid = results.size()>0;
             isFavorite.setValue(valid);
+        } finally {
+            realm.close();
         }
     }
 
-    private void loadTVShow(String id){
+    void loadTVShow(String id){
         disposable.add(
                 RetroServer
                         .getRequestService()
