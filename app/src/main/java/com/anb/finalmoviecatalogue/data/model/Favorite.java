@@ -8,17 +8,28 @@ public class Favorite extends RealmObject {
     @PrimaryKey
     private String id;
 
+    private String name;
+
     private String poster_path;
 
     private String type;
 
-    public Favorite(String id, String poster_path, String type) {
+    public Favorite(String id, String name, String poster_path, String type) {
         this.id = id;
+        this.name = name;
         this.poster_path = poster_path;
         this.type = type;
     }
 
     public Favorite() {
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getId() {

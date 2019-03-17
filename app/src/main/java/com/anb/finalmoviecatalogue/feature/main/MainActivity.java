@@ -74,14 +74,14 @@ public class MainActivity extends AppCompatActivity implements AHBottomNavigatio
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-
-        if (id == R.id.action_settings) {
-            Intent mIntent = new Intent(Settings.ACTION_LOCALE_SETTINGS);
-            startActivity(mIntent);
-            return true;
+        switch (item.getItemId()){
+            case R.id.reminder_setting:
+                return true;
+            case R.id.language_settings:
+                Intent mIntent = new Intent(Settings.ACTION_LOCALE_SETTINGS);
+                startActivity(mIntent);
+                return true;
         }
-
         return super.onOptionsItemSelected(item);
     }
 

@@ -2,10 +2,21 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.anb.finalmoviecatalogue.MainActivity">
-    <item
-        android:id="@+id/action_settings"
-        android:orderInCategory="100"
-        android:icon="@drawable/ic_settings_24dp"
-        android:title="@string/action_settings"
-        app:showAsAction="always" />
+
+    <item android:id="@+id/search"
+        android:title="@string/search"
+        android:icon="@drawable/ic_search_24dp"
+        app:showAsAction="collapseActionView|ifRoom"
+        app:actionViewClass="android.support.v7.widget.SearchView" />
+    <group android:menuCategory="container">
+        <item android:id="@+id/reminder_setting"
+            android:title="@string/reminder_setting"
+            app:showAsAction="never" />
+        <item
+            android:id="@+id/language_settings"
+            android:icon="@drawable/ic_settings_24dp"
+            android:title="@string/action_settings"
+            app:showAsAction="never" />
+    </group>
+
 </menu>

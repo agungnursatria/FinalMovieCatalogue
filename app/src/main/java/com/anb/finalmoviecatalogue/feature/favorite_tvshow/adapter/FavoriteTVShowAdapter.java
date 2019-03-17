@@ -17,6 +17,7 @@ import java.util.ArrayList;
 public class FavoriteTVShowAdapter extends RecyclerView.Adapter<FavoriteTVShowAdapter.GridViewHolder> {
     private Context context;
     private ArrayList<Favorite> listFavorite;
+    private ArrayList<Favorite> listFavoriteFull;
     private final OnItemClickListener listener;
 
     public interface OnItemClickListener {
@@ -26,15 +27,18 @@ public class FavoriteTVShowAdapter extends RecyclerView.Adapter<FavoriteTVShowAd
     public FavoriteTVShowAdapter(Context context, OnItemClickListener listener) {
         this.context = context;
         this.listener = listener;
-        listFavorite = new ArrayList<Favorite>();
+        listFavorite = new ArrayList<>();
+        listFavoriteFull = new ArrayList<>();
     }
 
-    public ArrayList<Favorite> getListFavorite() {
+    private ArrayList<Favorite> getListFavorite() {
         return listFavorite;
     }
 
     public void setListFavorite(ArrayList<Favorite> listFavorite) {
         this.listFavorite = listFavorite;
+        listFavoriteFull.clear();
+        listFavoriteFull.addAll(listFavorite);
     }
 
     @NonNull
@@ -64,5 +68,22 @@ public class FavoriteTVShowAdapter extends RecyclerView.Adapter<FavoriteTVShowAd
             Utils.setImage(favorite.getPoster_path(), imgPhoto);
             imgPhoto.setOnClickListener(v -> listener.onItemClick(favorite));
         }
+    }
+
+    public void filter(String textSearched) {
+        textSearched = textSearched.toLowerCase();
+        listFavorite.clear();
+        if (!listFavoriteFull.isEmpty()){
+            if (textSearched.length() != 0){
+                for (Favorite tvShow: listFavoriteFull) {
+                    if (tvShow.getName().toLowerCase().contains(textSearched)){
+                        listFavorite.add(tvShow);
+                    }
+                }
+            } else {
+                listFavorite.addAll(listFavoriteFull);
+            }
+        }
+        notifyDataSetChanged();
     }
 }

@@ -73,13 +73,13 @@ public class TVShowDetailActivity extends AppCompatActivity {
                 tv_first_air_date.setText(tvShowDetail.getFirst_air_date());
                 tv_last_air_date.setText(tvShowDetail.getLast_air_date());
                 tv_overview.setText(tvShowDetail.getOverview());
-                tv_vote_average.setText("Rating " + tvShowDetail.getVote_average());
+                tv_vote_average.setText(String.format("Rating %s", tvShowDetail.getVote_average()));
                 Utils.setBackdropImage(tvShowDetail.getBackdrop_path(), iv_backdrop_poster);
                 Utils.setImage(tvShowDetail.getPoster_path(), iv_poster);
             }
         };
         observerFav = fav -> {
-            fab_fav.setImageResource((fav)? R.drawable.ic_added_to_favorites: R.drawable.ic_add_to_favorites);
+            if (fav != null){ fab_fav.setImageResource((fav)? R.drawable.ic_added_to_favorites: R.drawable.ic_add_to_favorites); }
         };
 
         viewModel.getMovieResponse().observe(this, observerTVShow);
@@ -95,7 +95,6 @@ public class TVShowDetailActivity extends AppCompatActivity {
                 setResult(Activity.RESULT_OK, new Intent());
                 finish();
                 break;
-//                super.onBackPressed();
         }
         return super.onOptionsItemSelected(item);
     }
@@ -103,7 +102,6 @@ public class TVShowDetailActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         setResult(Activity.RESULT_OK, new Intent());
-//        super.onBackPressed();
         finish();
     }
 }

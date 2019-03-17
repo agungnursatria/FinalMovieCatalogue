@@ -2,6 +2,7 @@ package com.anb.finalmoviecatalogue.feature.favorite_movie;
 
 
 import android.app.Activity;
+import android.app.SearchManager;
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
@@ -14,9 +15,13 @@ import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.SearchView;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.TextView;
 
 import com.anb.finalmoviecatalogue.R;
@@ -26,6 +31,7 @@ import com.anb.finalmoviecatalogue.feature.movie_detail.MovieDetailActivity;
 import com.anb.finalmoviecatalogue.utils.Constant;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -49,12 +55,13 @@ public class FavoriteMovieFragment extends Fragment implements FavoriteMovieAdap
 
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_favorite_movie, container, false);
         context = view.getContext();
         viewModelFactory = new FavoriteMovieViewModelFactory(context);
         ButterKnife.bind(this, view);
+        setHasOptionsMenu(true);
         return view;
     }
 
@@ -74,10 +81,12 @@ public class FavoriteMovieFragment extends Fragment implements FavoriteMovieAdap
         super.onActivityCreated(savedInstanceState);
         viewModel = ViewModelProviders.of(this, viewModelFactory).get(FavoriteMovieViewModel.class);
         observer = movieList -> {
-            swipeRefreshLayout.setRefreshing(false);
-            adapter.setListFavorite(movieList);
-            adapter.notifyDataSetChanged();
-            tv_empty.setVisibility((movieList.size()>0)? View.INVISIBLE : View.VISIBLE);
+            if (movieList != null){
+                swipeRefreshLayout.setRefreshing(false);
+                adapter.setListFavorite(movieList);
+                adapter.notifyDataSetChanged();
+                tv_empty.setVisibility((movieList.size()>0)? View.INVISIBLE : View.VISIBLE);
+            }
         };
         viewModel.getResponse().observe(getViewLifecycleOwner(), observer);
     }
@@ -112,6 +121,35 @@ public class FavoriteMovieFragment extends Fragment implements FavoriteMovieAdap
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == Activity.RESULT_OK) {
             viewModel.loadFavoriteMovie();
+        }
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
+
+        SearchManager searchManager = (SearchManager) context.getSystemService(Context.SEARCH_SERVICE);
+        if (searchManager != null) {
+            SearchView searchView = (SearchView) (menu.findItem(R.id.search)).getActionView();
+            searchView.setSearchableInfo(searchManager.getSearchableInfo(Objects.requireNonNull(getActivity()).getComponentName()));
+            searchView.setQueryHint(getResources().getString(R.string.movie_hint));
+            searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+                @Override
+                public boolean onQueryTextSubmit(String query) {
+                    InputMethodManager inputManager = (InputMethodManager)
+                            Objects.requireNonNull(getActivity()).getSystemService(Context.INPUT_METHOD_SERVICE);
+                    if (inputManager != null) {
+                        inputManager.hideSoftInputFromWindow(Objects.requireNonNull(getActivity().getCurrentFocus()).getWindowToken(),
+                                InputMethodManager.HIDE_NOT_ALWAYS);
+                    }
+                    return true;
+                }
+                @Override
+                public boolean onQueryTextChange(String newText) {
+                    adapter.filter(newText);
+                    return false;
+                }
+            });
         }
     }
 }

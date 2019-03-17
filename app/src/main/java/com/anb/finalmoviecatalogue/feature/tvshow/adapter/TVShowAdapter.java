@@ -16,7 +16,8 @@ import java.util.ArrayList;
 
 public class TVShowAdapter extends RecyclerView.Adapter<TVShowAdapter.GridViewHolder> {
     private Context context;
-    private ArrayList<TVShow> listMovie;
+    private ArrayList<TVShow> listTVShow;
+    private ArrayList<TVShow> listTVShowFull;
     private final OnItemClickListener listener;
 
     public interface OnItemClickListener {
@@ -26,15 +27,18 @@ public class TVShowAdapter extends RecyclerView.Adapter<TVShowAdapter.GridViewHo
     public TVShowAdapter(Context context, OnItemClickListener listener) {
         this.context = context;
         this.listener = listener;
-        listMovie = new ArrayList<TVShow>();
+        listTVShow = new ArrayList<>();
+        listTVShowFull = new ArrayList<>();
     }
 
-    public ArrayList<TVShow> getListMovie() {
-        return listMovie;
+    private ArrayList<TVShow> getListMovie() {
+        return listTVShow;
     }
 
     public void setListMovie(ArrayList<TVShow> listMovie) {
-        this.listMovie = listMovie;
+        this.listTVShow = listMovie;
+        listTVShowFull.clear();
+        listTVShowFull.addAll(listMovie);
     }
 
     @NonNull
@@ -45,7 +49,7 @@ public class TVShowAdapter extends RecyclerView.Adapter<TVShowAdapter.GridViewHo
     }
     @Override
     public void onBindViewHolder(@NonNull GridViewHolder holder, int i) {
-        holder.bind(listMovie.get(i), listener);
+        holder.bind(listTVShow.get(i), listener);
     }
     @Override
     public int getItemCount() {
@@ -62,12 +66,24 @@ public class TVShowAdapter extends RecyclerView.Adapter<TVShowAdapter.GridViewHo
 
         void bind(final TVShow tvShow, final OnItemClickListener listener) {
             Utils.setImage(tvShow.getPoster_path(), imgPhoto);
-            imgPhoto.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    listener.onItemClick(tvShow);
-                }
-            });
+            imgPhoto.setOnClickListener(v -> listener.onItemClick(tvShow));
         }
+    }
+
+    public void filter(String textSearched) {
+        textSearched = textSearched.toLowerCase();
+        listTVShow.clear();
+        if (!listTVShowFull.isEmpty()){
+            if (textSearched.length() != 0){
+                for (TVShow tvShow: listTVShowFull) {
+                    if (tvShow.getName().toLowerCase().contains(textSearched)){
+                        listTVShow.add(tvShow);
+                    }
+                }
+            } else {
+                listTVShow.addAll(listTVShowFull);
+            }
+        }
+        notifyDataSetChanged();
     }
 }
