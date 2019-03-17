@@ -97,10 +97,4 @@ public class MainActivity extends AppCompatActivity implements AHBottomNavigatio
         super.onActivityResult(requestCode, resultCode, data);
     }
 
-//    @Override
-//    public void onDestroy() {
-//        super.onDestroy();
-//        Realm realm = Realm.getDefaultInstance();
-//        realm.close();
-//    }
 }

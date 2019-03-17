@@ -54,6 +54,9 @@ public class FavoriteTVShowFragment extends Fragment implements FavoriteTVShowAd
 
     public FavoriteTVShowFragment() {}
 
+    public FavoriteTVShowAdapter getAdapter() {
+        return adapter;
+    }
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
@@ -62,7 +65,6 @@ public class FavoriteTVShowFragment extends Fragment implements FavoriteTVShowAd
         context = view.getContext();
         viewModelFactory = new FavoriteTVShowViewModelFactory(context);
         ButterKnife.bind(this, view);
-        setHasOptionsMenu(true);
         return view;
     }
 
@@ -122,35 +124,6 @@ public class FavoriteTVShowFragment extends Fragment implements FavoriteTVShowAd
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == Activity.RESULT_OK) {
             viewModel.loadFavoriteMovie();
-        }
-    }
-
-    @Override
-    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        super.onCreateOptionsMenu(menu, inflater);
-
-        SearchManager searchManager = (SearchManager) context.getSystemService(Context.SEARCH_SERVICE);
-        if (searchManager != null) {
-            SearchView searchView = (SearchView) (menu.findItem(R.id.search)).getActionView();
-            searchView.setSearchableInfo(searchManager.getSearchableInfo(Objects.requireNonNull(getActivity()).getComponentName()));
-            searchView.setQueryHint(getResources().getString(R.string.movie_hint));
-            searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-                @Override
-                public boolean onQueryTextSubmit(String query) {
-                    InputMethodManager inputManager = (InputMethodManager)
-                            Objects.requireNonNull(getActivity()).getSystemService(Context.INPUT_METHOD_SERVICE);
-                    if (inputManager != null) {
-                        inputManager.hideSoftInputFromWindow(Objects.requireNonNull(getActivity().getCurrentFocus()).getWindowToken(),
-                                InputMethodManager.HIDE_NOT_ALWAYS);
-                    }
-                    return true;
-                }
-                @Override
-                public boolean onQueryTextChange(String newText) {
-                    adapter.filter(newText);
-                    return false;
-                }
-            });
         }
     }
 }
