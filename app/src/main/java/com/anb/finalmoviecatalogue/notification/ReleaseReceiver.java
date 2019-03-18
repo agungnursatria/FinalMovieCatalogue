@@ -50,6 +50,7 @@ public class ReleaseReceiver extends BroadcastReceiver {
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(movieResponse -> {
+                    int numNotif = 0;
                     ArrayList<Movie> movies = movieResponse.getResults();
                     for (Movie movie: movies) {
                         if (matchDate(movie.getRelease_date())){
@@ -57,7 +58,14 @@ public class ReleaseReceiver extends BroadcastReceiver {
                             String title = movie.getTitle();
                             String message = movie.getOverview();
                             sendNotification(context, title, message, notifId);
+                            numNotif++;
                         }
+                    }
+                    if (numNotif == 0){
+                        int notifId = new Random().nextInt(300);
+                        String title = context.getString(R.string.missing);
+                        String message = context.getString(R.string.no_release_message);
+                        sendNotification(context, title, message, notifId);
                     }
                 }, e -> Toast.makeText(context, e.getMessage(), Toast.LENGTH_SHORT).show());
     }

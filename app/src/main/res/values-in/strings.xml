@@ -124,4 +124,6 @@
     <string name="deactive_release_reminder">Pengingat Rilis Dinonaktifkan</string>
     <string name="active_daily_reminder">Pengingat Harian Diaktifkan</string>
     <string name="deactive_daily_remindedr">Pengingat Harian Dinonaktifkan</string>
+    <string name="no_release_message">Tidak ada film yang rilis hari ini!</string>
+    <string name="missing">Hilang!</string>
 </resources>

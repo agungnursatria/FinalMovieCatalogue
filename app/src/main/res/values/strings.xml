@@ -124,4 +124,6 @@
     <string name="deactive_release_reminder">Release Reminder Deactivated</string>
     <string name="active_daily_reminder">Daily Remidner Activated</string>
     <string name="deactive_daily_remindedr">Deactive Daily Reminder</string>
+    <string name="no_release_message">There is no released movie today!</string>
+    <string name="missing">Missing!</string>
 </resources>
