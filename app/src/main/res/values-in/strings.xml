@@ -23,6 +23,7 @@
     <string name="last_air_date">Tanggal tayang terakhir</string>
     <string name="movie_hint">Nama Film</string>
     <string name="tvshow_hint">Nama Acara TV</string>
+    <string name="empty_text">Data Kosong</string>
     <string name="large_text">
         "Materi adalah metafora. \ N \ n"
 
