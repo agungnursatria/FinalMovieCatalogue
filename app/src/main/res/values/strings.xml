@@ -114,4 +114,14 @@
     <string name="movie_hint">Movie Name</string>
     <string name="tvshow_hint">TV Show Name</string>
     <string name="empty_text">No Data</string>
+    <string name="release_reminder">Release Reminder</string>
+    <string name="detail_reminder_release">Reminder showing the movie that released today</string>
+    <string name="daily_reminder">Daily Reminder</string>
+    <string name="detail_daily_reminder">Reminder to return to app</string>
+    <string name="message_daily">Final Movie Catalogue missing you!</string>
+    <string name="release_movie_message">%s has been release today!</string>
+    <string name="active_release_reminder">Release Reminder Activated</string>
+    <string name="deactive_release_reminder">Release Reminder Deactivated</string>
+    <string name="active_daily_reminder">Daily Remidner Activated</string>
+    <string name="deactive_daily_remindedr">Deactive Daily Reminder</string>
 </resources>

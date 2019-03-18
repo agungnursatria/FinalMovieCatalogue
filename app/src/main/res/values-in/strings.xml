@@ -114,4 +114,14 @@
         "ketika pengguna mencoba mengambil salah satu kartu. \ n \ n"
     </string>
     <string name="refresh">Tarik ke bawah untuk refresh</string>
+    <string name="release_reminder">Pengingat Rilis</string>
+    <string name="detail_reminder_release">Pengingat menunjukkan film yang dirilis hari ini</string>
+    <string name="daily_reminder">Pengingat Harian</string>
+    <string name="detail_daily_reminder">Pengingat untuk kembali ke aplikasi</string>
+    <string name="message_daily">Final Movie Catalogue kehilanganmu!</string>
+    <string name="release_movie_message">%s telah rilis hari ini!</string>
+    <string name="active_release_reminder">Pengingat Rilis Diaktifkan</string>
+    <string name="deactive_release_reminder">Pengingat Rilis Dinonaktifkan</string>
+    <string name="active_daily_reminder">Pengingat Harian Diaktifkan</string>
+    <string name="deactive_daily_remindedr">Pengingat Harian Dinonaktifkan</string>
 </resources>

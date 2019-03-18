@@ -12,6 +12,7 @@ import android.view.MenuItem;
 
 import com.anb.finalmoviecatalogue.R;
 import com.anb.finalmoviecatalogue.feature.main.adapter.MainPagerAdapter;
+import com.anb.finalmoviecatalogue.feature.reminder.ReminderActivity;
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigation;
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigationItem;
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigationViewPager;
@@ -20,8 +21,6 @@ import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import io.realm.Realm;
-import io.realm.RealmConfiguration;
 
 public class MainActivity extends AppCompatActivity implements AHBottomNavigation.OnTabSelectedListener{
     @BindView(R.id.container_layout) AHBottomNavigationViewPager container_layout;
@@ -70,10 +69,10 @@ public class MainActivity extends AppCompatActivity implements AHBottomNavigatio
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
             case R.id.reminder_setting:
+                startActivity(new Intent(this, ReminderActivity.class));
                 return true;
             case R.id.language_settings:
-                Intent mIntent = new Intent(Settings.ACTION_LOCALE_SETTINGS);
-                startActivity(mIntent);
+                startActivity(new Intent(Settings.ACTION_LOCALE_SETTINGS));
                 return true;
         }
         return super.onOptionsItemSelected(item);
