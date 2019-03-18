@@ -76,7 +76,7 @@ public class FavoriteTVShowFragment extends Fragment implements FavoriteTVShowAd
         setLayoutManager(context);
         rv.setAdapter(adapter);
 
-        swipeRefreshLayout.setOnRefreshListener(() -> viewModel.loadFavoriteMovie());
+        swipeRefreshLayout.setOnRefreshListener(() -> viewModel.loadFavoriteMovie(context));
     }
 
     @Override
@@ -123,7 +123,7 @@ public class FavoriteTVShowFragment extends Fragment implements FavoriteTVShowAd
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == Activity.RESULT_OK) {
-            viewModel.loadFavoriteMovie();
+            viewModel.loadFavoriteMovie(context);
         }
     }
 }

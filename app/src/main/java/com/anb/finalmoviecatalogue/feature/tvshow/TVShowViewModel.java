@@ -1,5 +1,6 @@
 package com.anb.finalmoviecatalogue.feature.tvshow;
 
+import android.annotation.SuppressLint;
 import android.arch.lifecycle.MutableLiveData;
 import android.arch.lifecycle.ViewModel;
 import android.content.Context;
@@ -15,7 +16,7 @@ import io.reactivex.schedulers.Schedulers;
 
 public class TVShowViewModel extends ViewModel {
 
-    private Context context;
+    @SuppressLint("StaticFieldLeak") private Context context;
     private final CompositeDisposable disposable = new CompositeDisposable();
     private final MutableLiveData<TVShowResponse> response = new MutableLiveData<>();
 
