@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">FavoriteApp</string>
+    <string name="action_settings">Pengaturan Bahasa</string>
+    <string name="search">Pencarian</string>
+    <string name="reminder_setting">Pengaturan Pengingat</string>
+    <string name="nav_movie">Film</string>
+    <string name="nav_tv_show">Acara TV</string>
+    <string name="nav_favorite">Favorit</string>
+    <string name="title_activity_detail">Rincian Film</string>
+    <string name="cover_picture">Gambar Cover</string>
+    <string name="label_title">Judul</string>
+    <string name="label_user_score">Skor Penonton</string>
+    <string name="label_release_date">Tanggal Rilis</string>
+    <string name="title_activity_detail_tvshow">DetailTVShowActivity</string>
+    <string name="poster">Poster</string>
+    <string name="tagline">Slogan</string>
+    <string name="release_date">Tanggal Rilis</string>
+    <string name="overview">Sinopsis</string>
+    <string name="trailers">Trailer</string>
+    <string name="reviews">Ulasan</string>
+    <string name="first_air_date">Tanggal tayang perdana</string>
+    <string name="last_air_date">Tanggal tayang terakhir</string>
+    <string name="movie_hint">Nama Film</string>
+    <string name="tvshow_hint">Nama Acara TV</string>
+    <string name="empty_text">Data Kosong</string>
+    <string name="large_text">
+        "Materi adalah metafora. \ N \ n"
+
+        "Metafora material adalah teori pemersatu ruang yang dirasionalisasi dan sistem gerak."
+        "Materi didasarkan pada realitas taktil, terinspirasi oleh studi kertas dan tinta,"
+        "Teknologi maju dan terbuka untuk imajinasi dan sihir. \ n"
+        "Permukaan dan tepi material memberikan isyarat visual yang didasarkan pada kenyataan."
+        "Penggunaan atribut taktil yang dikenalnya membantu pengguna dengan cepat memahami harga. Namun,"
+        "Fleksibilitas materi menciptakan peluang baru yang menggantikan yang ada di fisik"
+        "Dunia, tanpa melanggar aturan fisika. \ n"
+        "Dasar-dasar cahaya, permukaan, dan gerakan adalah kunci untuk menyampaikan bagaimana benda bergerak,"
+        "Berinteraksi, dan ada dalam ruang dan dalam kaitannya satu sama lain. Pencahayaan yang realistis menunjukkan"
+        "jahitan, membagi ruang, dan menunjukkan bagian yang bergerak. \ n \ n"
+
+        "Berani, grafik, disengaja. \ N \ n"
+
+        "Elemen dasar tipografi desain cetak berbasis, grid, ruang, skala, warna,"
+        "dan penggunaan pencitraan panduan perawatan visual. Elemen-elemen ini jauh lebih menyenangkan daripada"
+        "mata. Mereka menciptakan hierarki, makna, dan fokus. Pilihan warna yang disengaja, ujung ke ujung"
+        "Pencitraan, tipografi skala besar, dan ruang putih yang disengaja membuat huruf tebal dan grafik"
+        "antarmuka yang membenamkan pengguna dalam pengalaman. \ n"
+        "Penekanan pada tindakan pengguna membuat fungsi inti segera terlihat dan memberikan"
+        "titik jalan untuk pengguna. \ n \ n"
+
+        "Gerak memberikan makna. \ N \ n"
+
+        "Motion menghargai dan memperkuat pengguna sebagai penggerak utama. Tindakan utama pengguna adalah"
+        "Titik belok yang memulai gerakan, mengubah seluruh desain. \ n"
+        "Semua tindakan terjadi dalam satu lingkungan. Objek disajikan kepada pengguna tanpa"
+        "melanggar kesinambungan pengalaman bahkan ketika mereka mengubah dan mengatur ulang. \ n"
+        "Gerakan itu bermakna dan sesuai, berfungsi untuk memusatkan perhatian dan menjaga kontinuitas."
+        "Umpan baliknya halus namun jelas. Transisi efisien namun koheren. \ N \ n"
+
+        "Dunia 3D. \ N \ n"
+
+        "Lingkungan material adalah ruang 3D, yang berarti semua objek memiliki x, y, dan z"
+        "dimensi. Sumbu z secara tegak lurus sejajar dengan bidang tampilan, dengan"
+        "Sumbu z positif memanjang ke arah pemirsa. Setiap lembar materi menempati satu"
+        "posisikan sepanjang sumbu z dan memiliki ketebalan 1dp standar. \ n"
+        "Di web, sumbu z digunakan untuk layering dan bukan untuk perspektif. Dunia 3D adalah"
+        "Ditiru dengan memanipulasi sumbu y. \ n \ n"
+
+        "Cahaya dan bayangan. \ N \ n"
+
+        "Di dalam lingkungan material, lampu virtual menerangi pemandangan. Lampu utama menciptakan"
+        "bayangan arah, sedangkan cahaya sekitar menciptakan bayangan lembut dari semua sudut. \ n"
+        "Bayangan di lingkungan material dilemparkan oleh dua sumber cahaya ini. Di Android"
+        "pengembangan, bayangan terjadi ketika sumber cahaya diblokir oleh lembaran material di"
+        "berbagai posisi di sepanjang sumbu z. Di web, bayangan digambarkan dengan memanipulasi"
+        "y-axis saja. Contoh berikut menunjukkan kartu dengan ketinggian 6dp. \ n \ n"
+
+        "Ketinggian istirahat. \ N \ n"
+
+        "Semua objek material, berapapun ukurannya, memiliki ketinggian istirahat, atau ketinggian standar"
+        "Itu tidak berubah. Jika suatu benda berubah ketinggian, benda itu harus kembali ke posisi istirahat"
+        "elevasi sesegera mungkin. \ n \ n"
+
+        "Ketinggian komponen. \ N \ n"
+
+        "Ketinggian istirahat untuk jenis komponen konsisten di seluruh aplikasi (mis., Peningkatan FAB"
+        "tidak bervariasi dari 6dp di satu aplikasi ke 16dp di aplikasi lain). \ n"
+        "Komponen mungkin memiliki ketinggian istirahat yang berbeda di seluruh platform, tergantung pada kedalamannya"
+        "dari lingkungan (mis., TV memiliki kedalaman lebih besar dari seluler atau desktop). \ n \ n"
+
+        "Elevasi responsif dan offset elevasi dinamis. \ N \ n"
+
+        "Beberapa tipe komponen memiliki elevasi responsif, yang berarti mereka mengubah elevasi sebagai respons"
+        "untuk input pengguna (mis., normal, fokus, dan ditekan) atau kejadian sistem. Peningkatan ini"
+        "Perubahan diterapkan secara konsisten menggunakan offset ketinggian dinamis. \ n"
+        "Offset elevasi dinamis adalah elevasi tujuan yang menjadi tujuan komponen, relatif"
+        "Ke kondisi istirahat komponen. Mereka memastikan bahwa perubahan ketinggian konsisten"
+        "lintas aksi dan tipe komponen. Misalnya, semua komponen yang mengangkat pers memiliki"
+        "perubahan ketinggian yang sama relatif terhadap ketinggian istirahat mereka. \ n"
+        "Setelah acara input selesai atau dibatalkan, komponen akan kembali ke istirahat"
+        "ketinggian. \ n \ n"
+
+        "Menghindari gangguan ketinggian. \ N \ n"
+
+        "Komponen dengan ketinggian responsif mungkin menemui komponen lain saat mereka bergerak di antara"
+        "Ketinggian istirahat mereka dan offset elevasi dinamis. Karena material tidak bisa lewat"
+        "Melalui bahan lain, komponen menghindari gangguan satu sama lain dengan berbagai cara,"
+        "apakah berdasarkan per komponen atau menggunakan seluruh tata letak aplikasi. \ n"
+        "Pada tingkat komponen, komponen dapat bergerak atau dilepas sebelum menyebabkan gangguan."
+        "Misalnya, tombol tindakan mengambang (FAB) dapat menghilang atau keluar dari layar sebelum"
+        "Pengguna mengambil kartu, atau dapat bergerak jika snackbar muncul. \ n"
+        "Pada tingkat tata letak, rancang tata letak aplikasi Anda untuk meminimalkan peluang gangguan."
+        "Misalnya, posisikan FAB ke satu sisi aliran kartu sehingga FAB tidak akan ikut campur"
+        "ketika pengguna mencoba mengambil salah satu kartu. \ n \ n"
+    </string>
+    <string name="refresh">Tarik ke bawah untuk refresh</string>
+    <string name="release_reminder">Pengingat Rilis</string>
+    <string name="detail_reminder_release">Pengingat menunjukkan film yang dirilis hari ini</string>
+    <string name="daily_reminder">Pengingat Harian</string>
+    <string name="detail_daily_reminder">Pengingat untuk kembali ke aplikasi</string>
+    <string name="message_daily">Final Movie Catalogue kehilanganmu!</string>
+    <string name="release_movie_message">%s telah rilis hari ini!</string>
+    <string name="active_release_reminder">Pengingat Rilis Diaktifkan</string>
+    <string name="deactive_release_reminder">Pengingat Rilis Dinonaktifkan</string>
+    <string name="active_daily_reminder">Pengingat Harian Diaktifkan</string>
+    <string name="deactive_daily_remindedr">Pengingat Harian Dinonaktifkan</string>
+    <string name="no_release_message">Tidak ada film yang rilis hari ini!</string>
+    <string name="missing">Hilang!</string>
+</resources>

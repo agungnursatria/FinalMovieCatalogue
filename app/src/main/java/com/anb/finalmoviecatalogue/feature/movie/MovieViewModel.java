@@ -52,4 +52,15 @@ public class MovieViewModel extends ViewModel {
                         .subscribe(this::setData, this::onError)
         );
     }
+
+    void searchMovie(String query){
+        disposable.add(
+                RetroServer
+                        .getRequestService()
+                        .searchMovie(Constant.API_KEY, Constant.LANGUAGE, query)
+                        .subscribeOn(Schedulers.io())
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .subscribe(this::setData, this::onError)
+        );
+    }
 }

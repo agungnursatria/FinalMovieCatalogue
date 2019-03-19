@@ -92,12 +92,14 @@ public class MovieFragment extends Fragment implements MovieAdapter.OnItemClickL
                         inputManager.hideSoftInputFromWindow(Objects.requireNonNull(getActivity().getCurrentFocus()).getWindowToken(),
                                 InputMethodManager.HIDE_NOT_ALWAYS);
                     }
+                    progressBar.setVisibility(View.VISIBLE);
+                    viewModel.searchMovie(query);
                     return true;
                 }
 
                 @Override
                 public boolean onQueryTextChange(String newText) {
-                    adapter.filter(newText);
+//                    adapter.filter(newText);
                     return false;
                 }
             });

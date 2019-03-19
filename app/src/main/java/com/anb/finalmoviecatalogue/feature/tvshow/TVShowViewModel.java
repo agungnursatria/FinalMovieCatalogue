@@ -53,4 +53,15 @@ public class TVShowViewModel extends ViewModel {
                         .subscribe(this::setData, this::onError)
         );
     }
+
+    void searchTVShow(String query){
+        disposable.add(
+                RetroServer
+                        .getRequestService()
+                        .searchTVShow(Constant.API_KEY, Constant.LANGUAGE, query)
+                        .subscribeOn(Schedulers.io())
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .subscribe(this::setData, this::onError)
+        );
+    }
 }

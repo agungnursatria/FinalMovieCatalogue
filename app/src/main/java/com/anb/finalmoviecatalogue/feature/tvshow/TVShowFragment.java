@@ -17,12 +17,10 @@ import android.support.v7.widget.SearchView;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.ProgressBar;
-import android.widget.Toast;
 
 import com.anb.finalmoviecatalogue.R;
 import com.anb.finalmoviecatalogue.data.model.TVShow;
@@ -33,7 +31,6 @@ import com.anb.finalmoviecatalogue.feature.tvshow.adapter.TVShowAdapter;
 import com.anb.finalmoviecatalogue.feature.tvshow_detail.TVShowDetailActivity;
 import com.anb.finalmoviecatalogue.utils.Constant;
 
-import java.util.ArrayList;
 import java.util.Objects;
 
 import butterknife.BindView;
@@ -107,12 +104,14 @@ public class TVShowFragment extends Fragment implements TVShowAdapter.OnItemClic
                         inputManager.hideSoftInputFromWindow(Objects.requireNonNull(getActivity().getCurrentFocus()).getWindowToken(),
                                 InputMethodManager.HIDE_NOT_ALWAYS);
                     }
+                    progressBar.setVisibility(View.VISIBLE);
+                    viewModel.searchTVShow(query);
                     return true;
                 }
 
                 @Override
                 public boolean onQueryTextChange(String newText) {
-                    adapter.filter(newText);
+//                    adapter.filter(newText);
                     return false;
                 }
             });

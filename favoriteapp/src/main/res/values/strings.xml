@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Final Movie Catalogue</string>
+    <string name="app_name">FavoriteApp</string>
     <string name="action_settings">Language Settings</string>
     <string name="nav_movie">Movie</string>
     <string name="nav_tv_show">TV Show</string>

@@ -20,10 +20,24 @@ public interface RequestInterface {
             @Query("language") String language
     );
 
+    @GET("search/movie")
+    Observable<MovieResponse> searchMovie(
+            @Query("api_key") String api_key,
+            @Query("language") String language,
+            @Query("query") String query
+    );
+
     @GET("discover/tv")
     Observable<TVShowResponse> getTVShow(
             @Query("api_key") String api_key,
             @Query("language") String language
+    );
+
+    @GET("search/tv")
+    Observable<TVShowResponse> searchTVShow(
+            @Query("api_key") String api_key,
+            @Query("language") String language,
+            @Query("query") String query
     );
 
     @GET("movie/{movie_id}")
